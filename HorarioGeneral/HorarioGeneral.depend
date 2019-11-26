@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1573086304 source:/home/pi/Desktop/HorarioGeneral/MyLib.c
+	"MyLib.h"
+
+1572996599 /home/pi/Desktop/HorarioGeneral/MyLib.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1573086564 source:/home/pi/Desktop/HorarioGeneral/main.c
+	<stdio.h>
+	<stdlib.h>
+	"MyLib.h"
+
+1573685671 source:c:\users\rober\desktop\horario2\horariogeneral\main.c
+	<stdio.h>
+	<stdlib.h>
+	"MyLib.h"
+
+1572996600 c:\users\rober\desktop\horario2\horariogeneral\mylib.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1573086304 source:c:\users\rober\desktop\horario2\horariogeneral\mylib.c
+	"MyLib.h"
+
