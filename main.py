@@ -19,7 +19,7 @@ class Main():
     # img= ImageTk.PhotoImage(Image.open("cimarron.png"))
     # self.panel(img)
     self.btnCargarArchivo("Cargar Archivo")
-    self.btnnew("Agregar Docente","2",at.AddTeacher)
+    self.btnnew("Agregar Docente","2",at.AddTeacher) 
     self.btnnew("Agregar Cajon","3",ap.AddParking)
     self.btnnew("Datos de los Docentes","4",dt.DataTeachers)
     self.btnnew("Modificar Docente","5",mt.ModTeacher)

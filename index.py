@@ -37,7 +37,7 @@ class Maestros:
 
 
         #tabla
-        self.tree = ttk.Treeview(height=10, colum=2)
+        self.tree = ttk.Treeview(height=10, column=2)
         self.tree.grid(row=4,column=0,columnspan=2)
         self.tree.heading('#0', text= 'Nombre',anchor=CENTER)
         self.tree.heading('#1',text= 'Clave', anchor=CENTER)
