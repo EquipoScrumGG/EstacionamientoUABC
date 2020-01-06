@@ -51,7 +51,7 @@ PyObject *generarHorario_generar(PyObject *self, PyObject *args, PyObject *kwarg
 
         else {
             /*Crea el archivo en donde se guardara los horarios ya acomodados*/
-            pf1 = fopen("horario_generado.cvs", "w+");
+            pf1 = fopen("horario_generado.csv", "w+");
 
             /*Se guarda el formato deseado del archivo*/
             fprintf(pf1, "#N Empleado\tMAESTRO\tHorario\tLunes\tMartes\tMiercoles\tJueves\tViernes\tSabado\n");
