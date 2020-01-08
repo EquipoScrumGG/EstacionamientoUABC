@@ -41,7 +41,7 @@ class Main():
   def callback(self):
     # print("click")
     filename = askopenfilename() # show an "Open" dialog box and return the path to the selected file
-   #print(filename)
+    #print(filename)
     generarHorario.generar(filename) #Envia la direccion absoluta del archivo de texto para generar el csv
     # with open(filename, 'r') as file:
     #   data = file.read()
