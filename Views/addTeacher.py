@@ -2,6 +2,7 @@ import tkinter as tk
 import sqlite3
 
 class AddTeacher:
+  db_name = 'database.db'
   def __init__(self,master,number):
     self.master = master
     self.master.geometry("400x400+200+200")
@@ -10,9 +11,13 @@ class AddTeacher:
 
     self.label = tk.Label(master,text="Nombre del Docente").pack()
     self.name = tk.Entry(master,width=50).pack()
-    self.label = tk.Label(master,text="Clave del Docente").pack()
+    self.label = tk.Label(master,text="Numero del Docente").pack()
     self.clave = tk.Entry(master,width=50).pack()
-    self.save = tk .Button(master,text="Salvar Docente")
+    self.label = tk.Label(master,text="Turno").pack()
+    self.turno = tk.Entry(master,width=50).pack()
+    self.label = tk.Label(master,text="Cajon").pack()
+    self.cajon = tk.Entry(master,width=50).pack()
+    self.save = tk .Button(master,text="Guardar Docente",command=self.add_maestro).pack()
 
     self.quit = tk.Button(self.frame,text= "Cerrar",command= self.close_window)
     self.quit.pack()
@@ -28,28 +33,17 @@ class AddTeacher:
             conn.commit()
         return result
 
-  def get_Datos(self):
-    #limpiamos las tablas
-    records = self.tree.get_children()
-    for element in records:
-      self.tree.delete(element)
-    #consultando la base de datos
-    query = 'SELECT * FROM Maestros ORDER BY Nombre DESC'
-    db_rows = self.run_query(query)
-    for row in db_rows:
-      self.tree.insert('',0,text=row[0],values=row[1])
-
   def validacion(self):
-    return len(self.name.get())!= 0 and len(self.numeroid.get()) !=0
+    return len(self.name.get())!= 0 and len(self.clave.get()) !=0 and len(self.turno.get()) !=0 and len(self.cajon.get()) !=0
 
 
   def add_maestro(self):
     if self.validacion():
-      query= 'INSERT INTO Maestros VALUES(?,?)'
-      parameters = (self.name.get(),self.numeroid.get())
+      query= 'INSERT INTO Maestros VALUES(?,?,?,?)'
+      parameters = (self.name.get(),self.clave.get(),self.turno.get(),self.cajon.get())
       self.run_query(query,parameters)
         
     else:
       print('Faltaron Valores')
         
-    self.get_Datos()
+    # self.get_Datos()
