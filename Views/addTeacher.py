@@ -38,7 +38,7 @@ class AddTeacher:
         return result
 
   def validacion(self):
-    return len(self.name.get())!= 0 and len(self.clave.get()) !=0 #and len(self.turno.get()) !=0 and len(self.cajon.get()) !=0
+    return len(self.name.get())!= 0 and len(self.clave.get()) !=0 and len(self.turno.get()) !=0
 
 
   def add_maestro(self):
