@@ -86,4 +86,4 @@ class ModTeacher:
     return len(self.clave.get())!= 0
 
   def validacion2(self):
-    return len(self.clave.get())!= 0
+    return len(self.name.get())!= 0 and len(self.clave.get()) !=0 and len(self.turno.get()) !=0 and len(self.cajon.get()) !=0
