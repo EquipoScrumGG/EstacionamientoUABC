@@ -9,15 +9,18 @@ class DataTeachers:
 
   def __init__(self,master,number):
     self.master = master
-    self.master.geometry("400x400+200+200")
+    self.master.geometry("800x400+200+200")
     self.frame = tk.Frame(self.master)
     self.label = tk.Label(master,text="Datos de los docentes").pack()
 
     #tabla
-    self.tree = ttk.Treeview(self.master,column=2)
+    self.tree = ttk.Treeview(self.master)
     # self.tree.grid(row=4,column=0,columnspan=2)
-    self.tree.heading('#0', text= 'Nombre',anchor=tk.W)
-    self.tree.heading('#1',text= 'Clave', anchor=tk.W)
+    self.tree["columns"]=("clave","turno","cajon")
+    self.tree.heading('#0',text= 'Nombre',anchor=tk.W)
+    self.tree.heading('clave',text= 'Clave', anchor=tk.W)
+    self.tree.heading('turno',text= 'Turno', anchor=tk.W)
+    self.tree.heading('cajon',text= 'Cajon', anchor=tk.W)
     self.tree.pack(side=tk.TOP,fill=tk.X)
     self.get_Datos()
 
@@ -44,4 +47,4 @@ class DataTeachers:
     query = 'SELECT * FROM Maestros ORDER BY Nombre DESC'
     db_rows = self.run_query(query)
     for row in db_rows:
-      self.tree.insert('',0,text=row[0],values=row[1])
+      self.tree.insert('',0,text=row[0],values=(row[1],row[2],row[3]))

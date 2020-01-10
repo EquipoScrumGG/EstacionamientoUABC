@@ -10,13 +10,17 @@ class AddTeacher:
     self.label = tk.Label(master,text="Agregar Docente").pack()
 
     self.label = tk.Label(master,text="Nombre del Docente").pack()
-    self.name = tk.Entry(master,width=50).pack()
+    self.name = tk.Entry(master,width=50)
+    self.name.pack()
     self.label = tk.Label(master,text="Numero del Docente").pack()
-    self.clave = tk.Entry(master,width=50).pack()
+    self.clave = tk.Entry(master,width=50)
+    self.clave.pack()
     self.label = tk.Label(master,text="Turno").pack()
-    self.turno = tk.Entry(master,width=50).pack()
+    self.turno = tk.Entry(master,width=50)
+    self.turno.pack()
     self.label = tk.Label(master,text="Cajon").pack()
-    self.cajon = tk.Entry(master,width=50).pack()
+    self.cajon = tk.Entry(master,width=50)
+    self.cajon.pack()
     self.save = tk .Button(master,text="Guardar Docente",command=self.add_maestro).pack()
 
     self.quit = tk.Button(self.frame,text= "Cerrar",command= self.close_window)
@@ -34,7 +38,7 @@ class AddTeacher:
         return result
 
   def validacion(self):
-    return len(self.name.get())!= 0 and len(self.clave.get()) !=0 and len(self.turno.get()) !=0 and len(self.cajon.get()) !=0
+    return len(self.name.get())!= 0 and len(self.clave.get()) !=0 #and len(self.turno.get()) !=0 and len(self.cajon.get()) !=0
 
 
   def add_maestro(self):
