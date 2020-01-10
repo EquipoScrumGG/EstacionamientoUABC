@@ -27,7 +27,7 @@ class Main():
     self.btnnew("Datos de los Docentes","4",dt.DataTeachers)
     self.btnnew("Modificar Docente","5",mt.ModTeacher)
     self.btnnew("Eliminar Docente","6",delt.DeleteTeacher)
-    self.btnnew("Ver Cajones",'7',sp.SeeParking)
+    # self.btnnew("Ver Cajones",'7',sp.SeeParking)
     self.frame.pack()
 
   def btnCargarArchivo(self,text):
@@ -53,7 +53,7 @@ class Main():
     # print(data)
     # print(NumeroEmpleado)
 
-    
-root = tk.Tk()
-pp = Main(root)
-root.mainloop()
+if __name__ == "__main__":  
+  root = tk.Tk()
+  pp = Main(root)
+  root.mainloop()

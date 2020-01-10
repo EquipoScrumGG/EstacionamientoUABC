@@ -30,10 +30,11 @@ class AddTeacher:
   def close_window(self):
     self.master.destroy()
 
-  def run_query(self,query,parameters=()):
+  def run_query(self,query):
         with sqlite3.connect(self.db_name, timeout=10) as conn:
             esx = conn.cursor()
-            result = esx.execute(query,parameters)
+            result = esx.execute(query)
+            records = result.fetchall()
             conn.commit()
         return result
 
@@ -43,9 +44,16 @@ class AddTeacher:
 
   def add_maestro(self):
     if self.validacion():
-      query= 'INSERT INTO Maestros VALUES(?,?,?,?)'
-      parameters = (self.name.get(),self.clave.get(),self.turno.get(),self.cajon.get())
-      self.run_query(query,parameters)
+      x =0
+      cla = self.clave.get()
+      nom = self.name.get()
+      tur = self.turno.get()
+      caj = self.cajon.get()
+        
+      query= "INSERT INTO Maestros VALUES('"+nom+"',"+cla+","+tur+","+caj+")"
+      print(query)
+      # parameters = (self.name.get(),self.clave.get(),self.turno.get(),self.cajon.get())
+      self.run_query(query)
         
     else:
       print('Faltaron Valores')

@@ -6,12 +6,16 @@ class DeleteTeacher:
   def __init__(self,master,number):
     self.master = master
     self.master.geometry("400x400+200+200")
+    self.result = tk.StringVar()
+    self.rresult = tk.StringVar()
     self.frame = tk.Frame(self.master)
     self.label = tk.Label(master,text="Eliminar Docente").pack()
 
     self.label = tk.Label(master,text="Numero del Docente").pack()
-    self.clave = tk.Entry(master,width=50)
+    self.clave = tk.Entry(master,width=50,textvariable = self.result)
     self.clave.pack()
+    self.rlabel = tk.Label(master,text="",textvariable = self.rresult)
+    self.rlabel.pack()
     self.delete = tk .Button(master,text="Elininar Docente",command= self.delmaestro).pack()
 
     self.quit = tk.Button(self.frame,text= "Cerrar",command= self.close_window)
@@ -27,6 +31,8 @@ class DeleteTeacher:
       query= 'DELETE FROM Maestros WHERE Clave ='+cla
       print(query)
       self.run_query2(query)
+      self.result.set(' ')
+      self.rresult.set('Eliminado')
     else:
       print('Faltaron valores')
 
