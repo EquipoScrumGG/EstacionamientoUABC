@@ -9,6 +9,7 @@ class ModTeacher:
     self.result = tk.StringVar()
     self.rturno = tk.StringVar()
     self.rcajon = tk.StringVar()
+    self.rresult = tk.StringVar()
 
     self.frame = tk.Frame(self.master)
     self.label = tk.Label(master,text="Modificar Docente").pack()
@@ -29,6 +30,9 @@ class ModTeacher:
     self.cajon.pack()
     self.save = tk .Button(master,text="modificar Docente",command= self.mod_data).pack()
 
+    self.rlabel = tk.Label(master,text="",textvariable = self.rresult)
+    self.rlabel.pack()
+
     self.quit = tk.Button(self.frame,text= "Cerrar",command= self.close_window)
     self.quit.pack()
     self.frame.pack()
@@ -41,7 +45,7 @@ class ModTeacher:
       cla = self.clave.get()
       query= 'SELECT Nombre,Turno,Cajon FROM Maestros WHERE Clave='+cla
       # parameters = (self.name.get(),self.clave.get(),self.turno.get(),self.cajon.get())
-      r = self.run_query(query,cla)
+      r = self.run_query(query)
       for row in r:
         self.result.set(row[0])
         self.rturno.set(row[1])
@@ -55,21 +59,29 @@ class ModTeacher:
       nom = self.name.get()
       tur = self.turno.get()
       caj = self.cajon.get()
-      query ='UPDATE Maestros SET Nombre = "'+nom+'", Turno = '+tur+', Cajon = '+caj+' WHERE Clave = '+cla
-      print(query)
-      self.run_query2(query)
+      result = self.verificarcajon()
+      for row in result:
+        r=row[0]
+        r2=row[1]
+      if(r==0 and r2==0):
+        query ='UPDATE Maestros SET Nombre = "'+nom+'", Turno = '+tur+', Cajon = '+caj+' WHERE Clave = '+cla
+        print(query)
+        self.run_query2(query)
+      else:
+        self.rresult.set('lugar ocupado')
+        print("limite de lugares")
     else:
       print('Faltaron Valores')
 
-  def run_query(self,query,cla):
+  def run_query(self,query):
     with sqlite3.connect(self.db_name, timeout=10) as conn:
       esx = conn.cursor()
       result = esx.execute(query)
       records = result.fetchall()
       conn.commit()
-      for row in records:
-        print(row[0])
-        print(row[1])
+      # for row in records:
+      #   print(row[0])
+      #   print(row[1])
     return records
 
   def run_query2(self,query):
@@ -87,3 +99,15 @@ class ModTeacher:
 
   def validacion2(self):
     return len(self.name.get())!= 0 and len(self.clave.get()) !=0 and len(self.turno.get()) !=0 and len(self.cajon.get()) !=0
+
+  def verificarcajon(self):
+    if self.validacion():
+      caj = self.cajon.get()
+      tur = self.turno.get()
+      query = "SELECT COUNT(Cajon),COUNT(Turno) FROM MAESTROS WHERE Cajon = "+caj+" AND Turno = "+tur
+      print(query)
+      result = self.run_query(query)
+      print(result)
+    else:
+      print("Faltaron Valores")
+    return result
